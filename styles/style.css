@@ -1,0 +1,15 @@
+.grid-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    
+}
+.item-1{
+    font-size: larger;
+    text-align: left;
+    
+}
+.item-2{
+    font-size: larger;
+    text-align: left;
+    
+}

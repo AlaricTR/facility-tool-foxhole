@@ -1,39 +1,3 @@
-
-const outputs =  {
-    Lance36: 
-    [
-            {
-                recipeNumber : 1,
-                output : "lance-36",
-                tier : 4, 
-                outputAmount : 1,
-                inputs : 
-                [
-                    {material : "steel", amount : 50},
-                    {material : "asm5", amount : 35},
-                    {material : "asm4", amount : 60},
-                    {material : "asm3", amount : 35}
-                    
-                ]
-            },
-            {
-                recipeNumber : 2,
-                output : "lance-36",
-                tier : 4, 
-                outputAmount : 1,
-                inputs : 
-                [
-                    {material : "steel", amount : 50},
-                    {material : "asm5", amount : 35},
-                    {material : "asm4", amount : 60},
-                    {material : "asm3", amount : 35}
-                    
-                ]
-            }
-    ]
-
-         
-}
 window.onload = () => {
     
     
@@ -56,4 +20,26 @@ function populateOutputSelect(outputs)
         );
         
         
+}
+
+function populateVariantDropdown(outputs)
+{
+    const variantSelect = document.getElementByClass("variants");
+    Object.keys(outputs)
+        .filter(key => outputs[key].length>1)
+        .forEach(key =>
+        {
+            const variantSelectDropdown = document.createElement("select");
+            variantSelectDropdown.name = outputs[key][0].output;
+            for (let i = 0;i<outputs[key].length;i++)
+            {
+                const opt = document.createElement("option");
+                opt.value = i;
+                opt.textContent = outputs[key][i].recipeNumber;
+                variantSelectDropdown.appendChild(opt);
+            }
+            variantSelect.appendChild(variantSelectDropdown);
+        }
+        );
+    
 }

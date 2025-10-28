@@ -3,12 +3,12 @@
     grid-template-columns: 1fr 1fr;
     
 }
-.item-1{
+.items{
     font-size: larger;
     text-align: left;
     
 }
-.item-2{
+.variants{
     font-size: larger;
     text-align: left;
     

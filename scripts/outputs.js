@@ -16,5 +16,34 @@ const outputs = {
             ]
 
         }
+    ],
+    PCM: 
+    [
+        {
+            recipeNumber : 1,
+            output : "PCM",
+            tier : 3, 
+            outputAmount : 1,
+            inputs : 
+            [
+                {material : "cmat", amount : 15},
+                {material : "metalbeam", amount : 1},
+                
+            ]
+
+        },
+        {
+            recipeNumber : 2,
+            output : "PCM",
+            tier : 3, 
+            outputAmount : 1,
+            inputs : 
+            [
+                {material : "cmat", amount : 3},
+                {material : "component", amount : 20},
+                
+            ]
+
+        }
     ]
 }

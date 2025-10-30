@@ -2,6 +2,7 @@ window.onload = () => {
     
     
     populateOutputSelect(outputs);
+    populateVariantDropdown(outputs);
 }
 
 function populateOutputSelect(outputs) 
@@ -24,18 +25,19 @@ function populateOutputSelect(outputs)
 
 function populateVariantDropdown(outputs)
 {
-    const variantSelect = document.getElementByClass("variants");
+    const variantSelect = document.getElementById("variants");
     Object.keys(outputs)
         .filter(key => outputs[key].length>1)
         .forEach(key =>
         {
+            console.log(key);
             const variantSelectDropdown = document.createElement("select");
             variantSelectDropdown.name = outputs[key][0].output;
             for (let i = 0;i<outputs[key].length;i++)
             {
                 const opt = document.createElement("option");
                 opt.value = i;
-                opt.textContent = outputs[key][i].recipeNumber;
+                opt.textContent = key + " " + outputs[key][i].recipeNumber;
                 variantSelectDropdown.appendChild(opt);
             }
             variantSelect.appendChild(variantSelectDropdown);

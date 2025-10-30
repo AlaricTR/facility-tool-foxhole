@@ -45,5 +45,33 @@ const outputs = {
             ]
 
         }
+    ],
+    CMAT: 
+    [
+        {
+            recipeNumber : 1,
+            output : "cmat",
+            tier : 1, 
+            outputAmount : 1,
+            inputs : 
+            [
+                {material : "salvage", amount : 10}
+                
+            ]
+
+        },
+        {
+            recipeNumber : 2,
+            output : "cmat",
+            tier : 1, 
+            outputAmount : 3,
+            inputs : 
+            [
+                {material : "salvage", amount : 15},
+                {material : "coke", amount : 25},
+                
+            ]
+
+        }
     ]
 }

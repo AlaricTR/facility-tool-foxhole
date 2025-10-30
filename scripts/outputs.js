@@ -81,7 +81,7 @@ const outputs = {
             output: "METALBEAM",
             tier: 1,
             outputAmount: 1,
-            inputs:
+            inputs :
             [
                 {material: "salvage", amount: "25"}
             ]
@@ -110,6 +110,32 @@ const outputs = {
             inputs:
             [
                 {material: "salvage", amount: "25"}
+            ]
+        }
+    ],
+    component:
+    [
+        {
+            recipeNumber: 1,
+            output: "component",
+            tier: 0,
+            outputAmount: 1,
+            inputs:
+            [
+                {material: "component", amount: "25"}
+            ]
+        }
+    ],
+    coal:
+    [
+        {
+            recipeNumber: 1,
+            output: "coal",
+            tier: 0,
+            outputAmount: 1,
+            inputs:
+            [
+                {material: "component", amount: "25"}
             ]
         }
     ]

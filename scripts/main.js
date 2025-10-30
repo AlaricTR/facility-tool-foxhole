@@ -27,11 +27,12 @@ function populateOutputSelect(outputs)
 
 function populateVariantDropdown(item)
 {
+    
     const variantSelect = document.getElementById("variants");
-        
+    if (document.getElementById(item)) { return;}
     const variantSelectDropdown = document.createElement("select");
     variantSelectDropdown.name = item;
-    variantSelectDropdown.id = item;
+    variantSelectDropdown.id = item + "-select";
     for (let i = 0;i<outputs[item].length;i++)
     {
         const opt = document.createElement("option");
@@ -40,6 +41,7 @@ function populateVariantDropdown(item)
         variantSelectDropdown.appendChild(opt);
     }
     variantSelect.appendChild(variantSelectDropdown);
+    
         
 
     
@@ -56,29 +58,34 @@ function handleSelection()
 
 function recursiveRecipeBreakdown(item, parent)
 {
-    if (outputs[item].length>1)
+    if (parent.contains(document.getElementById(item)))
     {
-        populateVariantDropdown(item);
+        parent.removeChild(document.getElementById(item));
+    }
+    if ((outputs[item].length>1) && (!document.getElementById(item+"-select")))
+    {
+        populateVariantDropdown(item, parent);
+        const variantSelectDropdown = document.getElementById(item+"-select");
+        variantSelectDropdown.addEventListener("input", () => recursiveRecipeBreakdown(item, parent), false); //add a listener that recalculates recursive recipes if the global variant is changed.
     }
     const itemChild = document.createElement("ul");
+    itemChild.id = item;
     itemChild.textContent = item;
-    console.log(itemChild.textContent);
     parent.appendChild(itemChild);
     if (outputs[item][0].tier>0) //if the current item's tier is above 0, recurse through its children, first detecting which recipe user has selected.
     {
-        const selectedVariant = document.getElementById(item);
+        const selectedVariant = document.getElementById(item+"-select");
         let recipe = 0;
-        if (!selectedVariant) 
+        if (!selectedVariant) //recipe being null if their were no variants to chose was causing issues
             { 
                 recipe = 0;
-                console.log(recipe);
 
             } else 
             {
                 recipe = selectedVariant.value;
             }
         
-        
+        console.log(outputs[item][recipe]);
         for (let i = 0;i<outputs[item][recipe].inputs.length;i++)
         {
             recursiveRecipeBreakdown(outputs[item][recipe].inputs[i].material, itemChild);

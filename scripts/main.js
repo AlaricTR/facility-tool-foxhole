@@ -2,7 +2,9 @@ window.onload = () => {
     
     
     populateOutputSelect(outputs);
-    populateVariantDropdown(outputs);
+    
+    const itemSelect = document.getElementById("item-select");
+    itemSelect.addEventListener("input", handleSelection, false);
 }
 
 function populateOutputSelect(outputs) 
@@ -23,25 +25,48 @@ function populateOutputSelect(outputs)
         
 }
 
-function populateVariantDropdown(outputs)
+function populateVariantDropdown(item)
 {
     const variantSelect = document.getElementById("variants");
-    Object.keys(outputs)
-        .filter(key => outputs[key].length>1)
-        .forEach(key =>
-        {
-            console.log(key);
-            const variantSelectDropdown = document.createElement("select");
-            variantSelectDropdown.name = outputs[key][0].output;
-            for (let i = 0;i<outputs[key].length;i++)
-            {
-                const opt = document.createElement("option");
-                opt.value = i;
-                opt.textContent = key + " " + outputs[key][i].recipeNumber;
-                variantSelectDropdown.appendChild(opt);
-            }
-            variantSelect.appendChild(variantSelectDropdown);
-        }
-        );
+        
+    const variantSelectDropdown = document.createElement("select");
+    variantSelectDropdown.name = outputs[item][0].output;
+    for (let i = 0;i<outputs[item].length;i++)
+    {
+        const opt = document.createElement("option");
+        opt.value = i;
+        opt.textContent = item + " " + outputs[item][i].recipeNumber;
+        variantSelectDropdown.appendChild(opt);
+    }
+    variantSelect.appendChild(variantSelectDropdown);
+        
+
     
+}
+
+function handleSelection()
+{
+    console.log(event.target.value);
+    clearVariantDropdown();
+    recursiveRecipeBreakdown(event.target.value);
+}
+
+function recursiveRecipeBreakdown(item)
+{
+    if (outputs[item].length>1)
+    {
+        populateVariantDropdown(item);
+    }
+    else
+    {
+        return;
+    }
+}
+function clearVariantDropdown()
+{
+    const variantSelect = document.getElementById("variants");
+    while (variantSelect.firstChild)
+    {
+        variantSelect.removeChild(variantSelect.firstChild);
+    }
 }

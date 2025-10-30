@@ -26,8 +26,8 @@ const outputs = {
             outputAmount : 1,
             inputs : 
             [
-                {material : "cmat", amount : 15},
-                {material : "metalbeam", amount : 1},
+                {material : "CMAT", amount : 15},
+                {material : "METALBEAM", amount : 1},
                 
             ]
 
@@ -39,7 +39,7 @@ const outputs = {
             outputAmount : 1,
             inputs : 
             [
-                {material : "cmat", amount : 3},
+                {material : "CMAT", amount : 3},
                 {material : "component", amount : 20},
                 
             ]
@@ -50,7 +50,7 @@ const outputs = {
     [
         {
             recipeNumber : 1,
-            output : "cmat",
+            output : "CMAT",
             tier : 1, 
             outputAmount : 1,
             inputs : 
@@ -62,16 +62,55 @@ const outputs = {
         },
         {
             recipeNumber : 2,
-            output : "cmat",
+            output : "CMAT",
             tier : 1, 
             outputAmount : 3,
             inputs : 
             [
                 {material : "salvage", amount : 15},
-                {material : "coke", amount : 25},
+                {material : "COKE", amount : 25},
                 
             ]
 
+        }
+    ],
+    METALBEAM:
+    [
+        {
+            recipeNumber: 1,
+            output: "METALBEAM",
+            tier: 1,
+            outputAmount: 1,
+            inputs:
+            [
+                {material: "salvage", amount: "25"}
+            ]
+        }
+    ],
+    COKE:
+    [
+        {
+            recipeNumber: 1,
+            output: "COKE",
+            tier: 1,
+            outputAmount: 180,
+            inputs:
+            [
+                {material: "coal", amount: "200"}
+            ]
+        }
+    ],
+    salvage:
+    [
+        {
+            recipeNumber: 1,
+            output: "salvage",
+            tier: 0,
+            outputAmount: 1,
+            inputs:
+            [
+                {material: "salvage", amount: "25"}
+            ]
         }
     ]
 }
